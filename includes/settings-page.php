@@ -6,7 +6,7 @@
             <tbody>
 			<?php foreach ( $fields as $id => $field ): ?>
                 <tr valign="top">
-                    <th scope="row"><?php echo $field['label'] ?></th>
+                    <th scope="row"><?php if ( isset( $field['label'] ) ) echo $field['label'] ?></th>
                     <td>
 						<?php switch ( $field['type'] ):
 							case 'text': ?>

@@ -100,7 +100,7 @@ abstract class Abstract_Settings {
 		return empty( $integer ) ||
 		       ( false !== filter_var( $integer, FILTER_VALIDATE_INT ) ) &&
 		       ( ! isset( $field['min'] ) || intval( $field['min'] ) <= intval( $integer ) ) &&
-		       ( ! isset( $field['max'] ) || intval( $field['max'] ) <= intval( $integer ) ) &&
+		       ( ! isset( $field['max'] ) || intval( $field['max'] ) >= intval( $integer ) ) &&
 		       ( ! isset( $field['step'] ) || ! ( ( intval( $integer ) - intval( isset( $field['min'] ) ? $field['min'] : 0 ) ) % intval( $field['step'] ) ) );
 	}
 
@@ -118,7 +118,7 @@ abstract class Abstract_Settings {
 		return empty( $number ) ||
 		       is_numeric( $number ) &&
 		       ( ! isset( $field['min'] ) || floatval( $field['min'] ) <= floatval( $number ) ) &&
-		       ( ! isset( $field['max'] ) || floatval( $field['max'] ) <= floatval( $number ) );
+		       ( ! isset( $field['max'] ) || floatval( $field['max'] ) >= floatval( $number ) );
 	}
 
 	/**
