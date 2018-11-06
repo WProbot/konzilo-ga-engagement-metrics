@@ -23,6 +23,10 @@ require_once __DIR__ . '/classes/class-abstract-plugin.php';
 
 class Plugin extends Abstract_Plugin {
 
+	static public function is_kntnt_engagement_metric_active() {
+		return in_array( 'kntnt-engagement-metrics/kntnt-engagement-metrics.php', (array) get_option( 'active_plugins', [] ) );
+	}
+
 	public function classes_to_load() {
 
 		return [

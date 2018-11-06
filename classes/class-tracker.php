@@ -6,15 +6,12 @@ class Tracker {
 
 	private $ns;
 
-	private $is_kntnt_engagement_metric_active;
-
 	public function __construct() {
 		$this->ns = Plugin::ns();
-		$this->is_kntnt_engagement_metric_active = in_array( 'kntnt-engagement-metrics/kntnt-engagement-metrics.php', (array) get_option( 'active_plugins', [] ) );
 	}
 
 	public function run() {
-		if ( $this->is_kntnt_engagement_metric_active ) {
+		if ( Plugin::is_kntnt_engagement_metric_active() ) {
 			add_filter( 'kntnt-engagement-metrics-settings', [$this, 'engagement_metrics_settings'] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script' ] );
 		}
