@@ -138,7 +138,9 @@ class Settings extends Abstract_Settings {
 			'type' => 'integer',
 			'label' => __( 'Bounce Limit', 'kntnt-ga-engagement-metrics' ),
 			'description' => __( "Minimum percentage read for non-bounce. That is, events sent up til but not including this reading ratio (in percent) are non-interactive, and thereafter interactive.", 'kntnt-ga-engagement-metrics' ),
-			'default' => '',
+			'default' => 10,
+			'min' => 0,
+			'max' => 100,
 			'disabled' => $disabled,
 		];
 
