@@ -53,6 +53,17 @@ abstract class Abstract_Plugin {
 		return self::$ns;
 	}
 
+	// Plugin version.
+	static public function version() {
+		$key = self::$ns . '-plugin-version';
+		$version = get_transient( $key );
+		if ( ! $version ) {
+			$version = get_plugin_data( self::plugin_dir( self::$ns . '.php' ), false, false )['Version'];
+			set_transient( $key, $version, YEAR_IN_SECONDS );
+		}
+		return $version;
+	}
+
 	// This plugin's path relative file system root, with no trailing slash.
 	// If $rel_path is given, with or without leading slash, it is appended
 	// with leading slash.
