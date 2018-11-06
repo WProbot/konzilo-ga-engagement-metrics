@@ -34,6 +34,14 @@ class Settings extends Abstract_Settings {
 			];
 		}
 
+		$fields['category'] = [
+			'type' => 'text',
+			'label' => __( 'Google Analytics Category', 'kntnt-ga-engagement-metrics' ),
+			'description' => __( "The Google Analytics category name used by both the reading time events and the scanning depth events.", 'kntnt-ga-engagement-metrics' ),
+			'default' => __( 'Articles', 'kntnt-ga-engagement-metrics' ),
+			'disabled' => $disabled,
+		];
+
 		$fields['reading_time_events'] = [
 			'type' => 'text',
 			'label' => __( 'Reading Time Events', 'kntnt-ga-engagement-metrics' ),
@@ -44,37 +52,11 @@ class Settings extends Abstract_Settings {
 			'disabled' => $disabled,
 		];
 
-		$fields['scanning_depth_events'] = [
-			'type' => 'text',
-			'label' => __( 'Scanning Depth Events', 'kntnt-ga-engagement-metrics' ),
-			'description' => __( "Enter a comma separated list of percentages. When the scanning ratio has reached or exceeded a percentage, a reading time event is sent.", 'kntnt-ga-engagement-metrics' ),
-			'default' => [ 25, 50, 75, 100 ],
-			'filter-before' => [ $this, 'filter_percentages_before' ],
-			'filter-after' => [ $this, 'filter_percentages_after' ],
-			'disabled' => $disabled,
-		];
-
-		$fields['category'] = [
-			'type' => 'text',
-			'label' => __( 'Google Analytics Category', 'kntnt-ga-engagement-metrics' ),
-			'description' => __( "The Google Analytics category name used by both the reading time events and the scanning depth events.", 'kntnt-ga-engagement-metrics' ),
-			'default' => __( 'Articles', 'kntnt-ga-engagement-metrics' ),
-			'disabled' => $disabled,
-		];
-
 		$fields['reading_time_event_name'] = [
 			'type' => 'text',
 			'label' => __( 'Reading Time Event Name', 'kntnt-ga-engagement-metrics' ),
-			'description' => __( "The  Google Analytics action name used by the reading time event. The placeholder {0} is replaced with the highest percentage in gaReadingTimeEvents less than or equal to the current reading ratio.", 'kntnt-ga-engagement-metrics' ),
+			'description' => __( "The  Google Analytics action name used by the reading time event. The placeholder {0} is replaced with the highest percentage given above less than or equal to the current reading ratio.", 'kntnt-ga-engagement-metrics' ),
 			'default' => __( 'Reading {0}%', 'kntnt-ga-engagement-metrics' ),
-			'disabled' => $disabled,
-		];
-
-		$fields['scanning_depth_event_name'] = [
-			'type' => 'text',
-			'label' => __( 'Scanning Depth Event Name', 'kntnt-ga-engagement-metrics' ),
-			'description' => __( "The  Google Analytics action name used by the scanning depth event. The placeholder {0} is replaced with the highest percentage in gaScanningDepthEvents less than or equal to the current scanning ratio.", 'kntnt-ga-engagement-metrics' ),
-			'default' => __( 'Scanning {0}%', 'kntnt-ga-engagement-metrics' ),
 			'disabled' => $disabled,
 		];
 
@@ -82,14 +64,6 @@ class Settings extends Abstract_Settings {
 			'type' => 'text',
 			'label' => __( 'Reading Time Dimension Slot', 'kntnt-ga-engagement-metrics' ),
 			'description' => __( "When a reading time event is sent to Google Analytic, the customer dimension with this name (e.g. dimension1) is assigned the event's name (see above). Leave empty to disable.", 'kntnt-ga-engagement-metrics' ),
-			'default' => '',
-			'disabled' => $disabled,
-		];
-
-		$fields['scanning_depth_dimension_slot'] = [
-			'type' => 'text',
-			'label' => __( 'Scanning Depth Dimension Slot', 'kntnt-ga-engagement-metrics' ),
-			'description' => __( "When a scrolling depth event is sent to Google Analytic, the customer dimension with this name (e.g. dimension2) is assigned the event's name (see above). Leave empty to disable.", 'kntnt-ga-engagement-metrics' ),
 			'default' => '',
 			'disabled' => $disabled,
 		];
@@ -110,18 +84,44 @@ class Settings extends Abstract_Settings {
 			'disabled' => $disabled,
 		];
 
-		$fields['scanning_depth_metric_slot'] = [
+		$fields['reading_ratio_metric_slot'] = [
 			'type' => 'text',
-			'label' => __( 'Scanning Depth Metric Slot', 'kntnt-ga-engagement-metrics' ),
-			'description' => __( "When an event is sent to Google Analytic, the customer metric with this name (e.g. metric3) is assigned the current scanning depth in pixels. Leave empty to disable.", 'kntnt-ga-engagement-metrics' ),
+			'label' => __( 'Reading Ratio Metric Slot', 'kntnt-ga-engagement-metrics' ),
+			'description' => __( "When an event is sent to Google Analytic, the customer metric with this name (e.g. metric3) is assigned the current reading ratio in percentage. Leave empty to disable.", 'kntnt-ga-engagement-metrics' ),
 			'default' => '',
 			'disabled' => $disabled,
 		];
 
-		$fields['reading_ratio_metric_slot'] = [
+		$fields['scanning_depth_events'] = [
 			'type' => 'text',
-			'label' => __( 'Reading Ratio Metric Slot', 'kntnt-ga-engagement-metrics' ),
-			'description' => __( "When an event is sent to Google Analytic, the customer metric with this name (e.g. metric4) is assigned the current reading ratio in percentage. Leave empty to disable.", 'kntnt-ga-engagement-metrics' ),
+			'label' => __( 'Scanning Depth Events', 'kntnt-ga-engagement-metrics' ),
+			'description' => __( "Enter a comma separated list of percentages. When the scanning ratio has reached or exceeded a percentage, a scanning depth event is sent.", 'kntnt-ga-engagement-metrics' ),
+			'default' => [ 25, 50, 75, 100 ],
+			'filter-before' => [ $this, 'filter_percentages_before' ],
+			'filter-after' => [ $this, 'filter_percentages_after' ],
+			'disabled' => $disabled,
+		];
+
+		$fields['scanning_depth_event_name'] = [
+			'type' => 'text',
+			'label' => __( 'Scanning Depth Event Name', 'kntnt-ga-engagement-metrics' ),
+			'description' => __( "The  Google Analytics action name used by the scanning depth event. The placeholder {0} is replaced with the highest percentage above less than or equal to the current scanning ratio.", 'kntnt-ga-engagement-metrics' ),
+			'default' => __( 'Scanning {0}%', 'kntnt-ga-engagement-metrics' ),
+			'disabled' => $disabled,
+		];
+
+		$fields['scanning_depth_dimension_slot'] = [
+			'type' => 'text',
+			'label' => __( 'Scanning Depth Dimension Slot', 'kntnt-ga-engagement-metrics' ),
+			'description' => __( "When a scrolling depth event is sent to Google Analytic, the customer dimension with this name (e.g. dimension2) is assigned the event's name (see above). Leave empty to disable.", 'kntnt-ga-engagement-metrics' ),
+			'default' => '',
+			'disabled' => $disabled,
+		];
+
+		$fields['scanning_depth_metric_slot'] = [
+			'type' => 'text',
+			'label' => __( 'Scanning Depth Metric Slot', 'kntnt-ga-engagement-metrics' ),
+			'description' => __( "When an event is sent to Google Analytic, the customer metric with this name (e.g. metric4) is assigned the current scanning depth in pixels. Leave empty to disable.", 'kntnt-ga-engagement-metrics' ),
 			'default' => '',
 			'disabled' => $disabled,
 		];
