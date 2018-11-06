@@ -10,6 +10,8 @@ TODO
 
 Install the plugin [the usually way](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
 
+You must also install [Kntnt's Engagement Metrics](https://github.com/Kntnt/kntnt-engagement-metrics) which provides an API used by this plugin.
+
 ## Frequently Asked Questions
 
 ### Where is the setting page?
