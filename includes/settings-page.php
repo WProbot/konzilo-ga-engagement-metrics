@@ -60,7 +60,7 @@
                                 <br>
 								<?php break; ?>
 							<?php case 'checkbox': ?>
-                                <input id="<?php echo $id ?>" type="checkbox" name="<?php echo "{$ns}[$id]" ?>" value="1" <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php checked( $values[ $id ] ); ?> <?php isset( $field['required'] ) && $field['required'] ? 'required' : ''; ?> <?php isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?>>
+                                <input id="<?php echo $id ?>" type="checkbox" name="<?php echo  "{$ns}[$id]" ?>" value="1" <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php checked( $values[ $id ] ); ?> <?php isset( $field['required'] ) && $field['required'] ? 'required' : ''; ?> <?php isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?>>
 								<?php break; ?>
 							<?php case 'checkbox group': ?>
                                 <fieldset id="<?php echo $id ?>">

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kntnt\GA_Engagement_Metrics;
+namespace Konzilo\GA_Engagement_Metrics;
 
 abstract class Abstract_Plugin {
 
@@ -64,6 +64,12 @@ abstract class Abstract_Plugin {
 		return $version;
 	}
 
+	// Returns true if and only if there is a a plugin named $plugin and
+	// it is active.
+	static public function is_active_plugin( $plugin ) {
+		return in_array( "$plugin/$plugin.php", (array) get_option( 'active_plugins', [] ) );
+	}
+
 	// This plugin's path relative file system root, with no trailing slash.
 	// If $rel_path is given, with or without leading slash, it is appended
 	// with leading slash.
@@ -98,9 +104,9 @@ abstract class Abstract_Plugin {
 	}
 
 	public static function is_debugging() {
-		static $kntnt_debug;
-		if ( ! $kntnt_debug ) $kntnt_debug = strtr( strtoupper( self::$ns ), '-', '_' );
-		return defined( 'WP_DEBUG' ) && constant( 'WP_DEBUG' ) && defined( $kntnt_debug ) && constant( $kntnt_debug );
+		static $konzilo_debug;
+		if ( ! $konzilo_debug ) $konzilo_debug = strtr( strtoupper( self::$ns ), '-', '_' );
+		return defined( 'WP_DEBUG' ) && constant( 'WP_DEBUG' ) && defined( $konzilo_debug ) && constant( $konzilo_debug );
 	}
 
 	// Returns an instance of the class with the provided name.
@@ -115,13 +121,21 @@ abstract class Abstract_Plugin {
 		return Plugin::plugin_dir( "includes/$file" );
 	}
 
-	// If $key is left out or empty, e.g. `Plugin::option()`, returns an array
-	// with this plugins all options if existing, otherwise $default.
-	// If $key is included and non-empty, e.g. `Plugin::option('key')`, returns
-	// `Plugin::option()['key']` if the aforementioned array has an index 'key',
-	// otherwise $default.
-	static public function option( $key = '', $default = false ) {
-		$opt = get_option( self::$ns, null );
+	// If $key is left out, null or empty, the option named as $plugin will be
+	// returned if existing and the plugin exists and is active, otherwise
+	// $default is returned. If $key is provided and is not null nor empty,
+	// Plugin::option()['key'] is returned if existing, otherwise $default is
+	// returned. If $plugin is left out, null or empty, this plugin is used.
+	static public function option( $key = null, $default = false, $plugin = null ) {
+		if ( $plugin) {
+			if (!is_active_plugin($plugin) ) {
+				return $default;
+			}
+		}
+		else {
+			$plugin = self::$ns;
+		}
+		$opt = get_option( $plugin, null );
 		if ( null === $opt ) {
 			return $default;
 		}
@@ -174,6 +188,5 @@ abstract class Abstract_Plugin {
 			return get_metadata( $type, $post_id, $field, true );
 		}
 	}
-
 
 }

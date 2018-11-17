@@ -1,4 +1,4 @@
-# Kntnt's Engagement Metrics for Google Analytics
+# Konzilo Engagement Metrics for Google Analytics
 
 WordPress plugin that provides Google Analytics with engagement metrics.
 
@@ -10,7 +10,11 @@ TODO
 
 Install the plugin [the usually way](https://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
 
-You must also install [Kntnt's Engagement Metrics](https://github.com/Kntnt/kntnt-engagement-metrics) which provides an API used by this plugin.
+You can also install it with [*GitHub Updater*](https://github.com/afragen/github-updater/archive/develop.zip), which gives you the additional benefit of keeping the plugin up to date from within its administrative interface (i.e. the usually way). Please visit its [wiki](https://github.com/afragen/github-updater/wiki) for more information.
+
+You need an API key for this plugin to work. To get an API key free of charge, send a request to info@kntnt.com.
+
+You must also install [Konzilo Engagement Metrics](https://github.com/kntnt/konzilo-engagement-metrics) which provides an API used by this plugin.
 
 ## Frequently Asked Questions
 
@@ -20,23 +24,23 @@ Look for `Engagement Metrics for Google Analytics` in the Settings menu.
 
 ### How do I know if there is a new version?
 
-This plugin is currently [hosted on GitHub](https://github.com/Kntnt/kntnt-ga-engagement-metrics); one way would be to ["watch" the repository](https://help.github.com/articles/watching-and-unwatching-repositories/).
+This plugin is currently [hosted on GitHub](https://github.com/kntnt/konzilo-ga-engagement-metrics); one way would be to ["watch" the repository](https://help.github.com/articles/watching-and-unwatching-repositories/).
 
 If you prefer WordPress to nag you about an update and let you update from within its administrative interface (i.e. the usually way) you must [download *GitHub Updater*](https://github.com/afragen/github-updater/archive/develop.zip) and install and activate it the usually way. Please visit its [wiki](https://github.com/afragen/github-updater/wiki) for more information. 
 
 ### How can I get help?
 
-If you have a questions about the plugin, and cannot find an answer here, start by looking at [issues](https://github.com/Kntnt/kntnt-ga-engagement-metrics/issues) and [pull requests](https://github.com/Kntnt/kntnt-ga-engagement-metrics/pulls). If you still cannot find the answer, feel free to ask in the the plugin's [issue tracker](https://github.com/Kntnt/kntnt-ga-engagement-metrics/issues) at Github.
+If you have a questions about the plugin, and cannot find an answer here, start by looking at [issues](https://github.com/kntnt/konzilo-ga-engagement-metrics/issues) and [pull requests](https://github.com/kntnt/konzilo-ga-engagement-metrics/pulls). If you still cannot find the answer, feel free to ask in the the plugin's [issue tracker](https://github.com/kntnt/konzilo-ga-engagement-metrics/issues) at Github.
 
 ### How can I report a bug?
 
-If you have found a potential bug, please report it on the plugin's [issue tracker](https://github.com/Kntnt/kntnt-ga-engagement-metrics/issues) at Github.
+If you have found a potential bug, please report it on the plugin's [issue tracker](https://github.com/kntnt/konzilo-ga-engagement-metrics/issues) at Github.
 
 ### How can I contribute?
 
 Contributions to the code or documentation are much appreciated.
 
-If you are unfamiliar with Git, please date it as a new issue on the plugin's [issue tracker](https://github.com/Kntnt/kntnt-ga-engagement-metrics/issues) at Github.
+If you are unfamiliar with Git, please date it as a new issue on the plugin's [issue tracker](https://github.com/kntnt/konzilo-ga-engagement-metrics/issues) at Github.
 
 If you are familiar with Git, please do a pull request.
 

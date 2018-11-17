@@ -1,6 +1,6 @@
 <?php
 
-namespace Kntnt\GA_Engagement_Metrics;
+namespace Konzilo\GA_Engagement_Metrics;
 
 class Tracker {
 
@@ -11,13 +11,13 @@ class Tracker {
 	}
 
 	public function run() {
-		if ( Plugin::is_kntnt_engagement_metric_active() ) {
-			add_filter( 'kntnt-engagement-metrics-settings', [$this, 'engagement_metrics_settings'] );
+		if ( Plugin::is_active_plugin( 'konzilo-engagement-metrics' ) ) {
+			add_filter( 'konzilo-engagement-metrics-settings', [ $this, 'engagement_metrics_settings' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script' ] );
 		}
 	}
 
-	public function engagement_metrics_settings($settings) {
+	public function engagement_metrics_settings( $settings ) {
 		return $settings + [
 
 				// An array of percentages. When the reading ratio has reached
@@ -32,21 +32,21 @@ class Tracker {
 
 				// The Google Analytics category name used by both
 				// the reading time events and the scanning depth events.
-				'gaCategory' => Plugin::option( 'category', __( 'Articles', 'kntnt-ga-engagement-metrics' ) ),
+				'gaCategory' => Plugin::option( 'category', __( 'Articles', 'konzilo-ga-engagement-metrics' ) ),
 
 				// The  Google Analytics action name used by the reading time
 				// event. The placeholder {0} is replaced with the highest
 				// percentage in gaReadingTimeEvents less than or equal
 				// to the current reading ratio.
 				// translators: {0} is a placeholder for the percentage number.
-				'gaReadingTimeEventName' => Plugin::option( 'reading_time_event_name', __( 'Reading {0}%', 'kntnt-ga-engagement-metrics' ) ),
+				'gaReadingTimeEventName' => Plugin::option( 'reading_time_event_name', __( 'Reading {0}%', 'konzilo-ga-engagement-metrics' ) ),
 
 				// The  Google Analytics action name used by the scanning depth
 				// event. The placeholder {0} is replaced with the highest
 				// percentage in gaScanningDepthEvents less than or equal
 				// to the current scanning ratio.
 				// translators: {0} is a placeholder for the percentage number.
-				'gaScanningDepthEventName' => Plugin::option( 'scanning_depth_event_name', __( 'Scanning {0}%', 'kntnt-ga-engagement-metrics' ) ),
+				'gaScanningDepthEventName' => Plugin::option( 'scanning_depth_event_name', __( 'Scanning {0}%', 'konzilo-ga-engagement-metrics' ) ),
 
 				// When a reading time event is sent to GA, the customer
 				// dimension with this name (e.g. dimension1) is assigned
@@ -92,7 +92,17 @@ class Tracker {
 	}
 
 	public function enqueue_script() {
-		wp_enqueue_script( "{$this->ns}.js", Plugin::rel_plugin_dir( "js/{$this->ns}.min.js" ), [ 'kntnt-engagement-metrics.js' ] );
+		wp_enqueue_script( "$this->ns.js", $this->script_url(), [ 'jquery' ], null );
+	}
+
+	private function script_url() {
+		$cdn = 'https://d1zfh4ebmuaqr4.cloudfront.net';
+		$version = Plugin::version();
+		$domain = parse_url( site_url(), PHP_URL_HOST );
+		$expires = '2147483647';
+		$signature = Plugin::option( 'api_key' );
+		$id = Plugin::option( 'api_id' );
+		return "$cdn/$this->ns/$version/$this->ns.min.js?domain=$domain&Expires=$expires&Signature=$signature&Key-Pair-Id=$id";
 	}
 
 }
