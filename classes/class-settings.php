@@ -36,20 +36,19 @@ class Settings extends Abstract_Settings {
 
 		$fields['api_id'] = [
 			'type' => 'text',
-			'label' => __( 'API Id', 'konzilo-ga-engagement-metrics'),
+			'label' => __( 'API Id', 'konzilo-ga-engagement-metrics' ),
 			'size' => 80,
-			'description' => sprintf( __( 'Enter your API id. Send a request to %s to get your free API id and key.', 'konzilo-ga-engagement-metrics'), '<a href="mailto:info@kntnt.com">info@kntnt.com</a>' ),
+			'description' => sprintf( __( 'Enter your API id. Send a request to %s to get your free API id and key.', 'konzilo-ga-engagement-metrics' ), '<a href="mailto:info@kntnt.com">info@kntnt.com</a>' ),
 			'default' => '',
-			'disabled' => $disabled,
 		];
 
 		$fields['api_key'] = [
 			'type' => 'text area',
-			'label' => __( 'API Key', 'konzilo-ga-engagement-metrics'),
+			'label' => __( 'API Key', 'konzilo-ga-engagement-metrics' ),
+			'cols' => 80,
 			'rows' => 5,
-			'description' => sprintf( __( 'Enter your API key. Send a request to %s to get your free API id and key.', 'konzilo-ga-engagement-metrics'), '<a href="mailto:info@kntnt.com">info@kntnt.com</a>' ),
+			'description' => sprintf( __( 'Enter your API key. Send a request to %s to get your free API id and key.', 'konzilo-ga-engagement-metrics' ), '<a href="mailto:info@kntnt.com">info@kntnt.com</a>' ),
 			'default' => '',
-			'disabled' => $disabled,
 		];
 
 		$fields['category'] = [

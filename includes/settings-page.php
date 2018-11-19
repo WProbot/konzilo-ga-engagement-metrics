@@ -60,12 +60,12 @@
                                 <br>
 								<?php break; ?>
 							<?php case 'checkbox': ?>
-                                <input id="<?php echo $id ?>" type="checkbox" name="<?php echo  "{$ns}[$id]" ?>" value="1" <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php checked( $values[ $id ] ); ?> <?php isset( $field['required'] ) && $field['required'] ? 'required' : ''; ?> <?php isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?>>
+                                <input id="<?php echo $id ?>" type="checkbox" name="<?php echo "{$ns}[$id]" ?>" value="1" <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php checked( $values[ $id ] ); ?> <?php isset( $field['required'] ) && $field['required'] ? 'required' : ''; ?> <?php isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?>>
 								<?php break; ?>
 							<?php case 'checkbox group': ?>
                                 <fieldset id="<?php echo $id ?>">
 									<?php foreach ( $field['options'] as $value => $item ): ?>
-                                        <input type="checkbox" name="<?php echo "{$ns}[$id][$value]" ?>" value="<?php echo $value; ?>" <?php echo isset( $field['disabled'] ) && in_array( $value, $field['disabled'] ) ? 'disabled' : ''; ?> <?php echo in_array( $value, $values[ $id ] ) ? 'checked' : '' ?> <?php isset( $field['required'] ) && $field['required'] ? 'required' : ''; ?> <?php isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?>> <?php echo $item; ?><br>
+                                        <input type="checkbox" name="<?php echo "{$ns}[$id][$value]" ?>" value="<?php echo $value; ?>" <?php echo isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?> <?php echo in_array( $value, $values[ $id ] ) ? 'checked' : '' ?> <?php isset( $field['required'] ) && $field['required'] ? 'required' : ''; ?> <?php isset( $field['disabled'] ) && $field['disabled'] ? 'disabled' : ''; ?>> <?php echo $item; ?><br>
                                         <br>
 									<?php endforeach; ?>
                                 </fieldset>
