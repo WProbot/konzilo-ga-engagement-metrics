@@ -25,7 +25,7 @@ class Settings extends Abstract_Settings {
 	 */
 	protected function fields() {
 
-		$disabled = ! Plugin::is_active_plugin( 'konzilo-engagement-metrics' );
+		$disabled = (bool) Plugin::unsatisfied_dependencies();
 
 		if ( $disabled ) {
 			$fields['message'] = [

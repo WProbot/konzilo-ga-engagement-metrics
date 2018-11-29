@@ -11,7 +11,7 @@ class Tracker {
 	}
 
 	public function run() {
-		if ( Plugin::is_active_plugin( 'konzilo-engagement-metrics' ) ) {
+		if ( ! Plugin::unsatisfied_dependencies() ) {
 			add_filter( 'konzilo-engagement-metrics-settings', [ $this, 'engagement_metrics_settings' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script' ] );
 		}

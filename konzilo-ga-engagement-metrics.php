@@ -24,7 +24,13 @@ require_once __DIR__ . '/classes/class-abstract-plugin.php';
 class Plugin extends Abstract_Plugin {
 
 	static public function get_engagement_metrics_settings() {
+		// TODO
+	}
 
+	static protected function dependencies() {
+		return [
+			'konzilo-engagement-metrics/konzilo-engagement-metrics.php' => __('Konzilo Engagement Metrics', 'konzilo-ga-engagement-metrics'),
+		];
 	}
 
 	public function classes_to_load() {
