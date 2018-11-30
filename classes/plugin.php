@@ -17,13 +17,33 @@
 
 namespace Konzilo\GA_Engagement_Metrics;
 
-defined( 'WPINC' ) || die;
+class Plugin extends Abstract_Plugin {
 
-spl_autoload_register( function ( $class ) {
-	$ns_len = strlen( __NAMESPACE__ );
-	if ( 0 == substr_compare( $class, __NAMESPACE__, 0, $ns_len ) ) {
-		require_once __DIR__ . '/classes/' . strtr( strtolower( substr( $class, $ns_len + 1 ) ), '_', '-' ) . '.php';
+	static public function get_engagement_metrics_settings() {
+		// TODO
 	}
-} );
 
-new Plugin();
+	static protected function dependencies() {
+		return [
+			'konzilo-engagement-metrics/konzilo-engagement-metrics.php' => __('Konzilo Engagement Metrics', 'konzilo-ga-engagement-metrics'),
+		];
+	}
+
+	public function classes_to_load() {
+
+		return [
+			'public' => [
+				'init' => [
+					'Tracker',
+				],
+			],
+			'admin' => [
+				'init' => [
+					'Settings',
+				],
+			],
+		];
+
+	}
+
+}
