@@ -19,31 +19,27 @@ namespace Konzilo\GA_Engagement_Metrics;
 
 class Plugin extends Abstract_Plugin {
 
-	static public function get_engagement_metrics_settings() {
-		// TODO
-	}
+    static protected function dependencies() {
+        return [
+            'konzilo-engagement-metrics/konzilo-engagement-metrics.php' => __( 'Konzilo Engagement Metrics', 'konzilo-ga-engagement-metrics' ),
+        ];
+    }
 
-	static protected function dependencies() {
-		return [
-			'konzilo-engagement-metrics/konzilo-engagement-metrics.php' => __('Konzilo Engagement Metrics', 'konzilo-ga-engagement-metrics'),
-		];
-	}
+    public function classes_to_load() {
 
-	public function classes_to_load() {
+        return [
+            'public' => [
+                'init' => [
+                    'Tracker',
+                ],
+            ],
+            'admin' => [
+                'init' => [
+                    'Settings',
+                ],
+            ],
+        ];
 
-		return [
-			'public' => [
-				'init' => [
-					'Tracker',
-				],
-			],
-			'admin' => [
-				'init' => [
-					'Settings',
-				],
-			],
-		];
-
-	}
+    }
 
 }

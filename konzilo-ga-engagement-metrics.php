@@ -6,7 +6,7 @@
  * Plugin URI:        https://github.com/kntnt/konzilo-ga-engagement-metrics
  * GitHub Plugin URI: https://github.com/kntnt/konzilo-ga-engagement-metrics
  * Description:       Provides Google Analytics with engagement metrics.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Thomas Barregren
  * Author URI:        https://www.kntnt.com/
  * License:           GPL-3.0+
@@ -18,6 +18,7 @@
 namespace Konzilo\GA_Engagement_Metrics;
 
 defined( 'WPINC' ) || die;
+// define( 'KONZILO_GA_ENGAGEMENT_METRICS', true );
 
 spl_autoload_register( function ( $class ) {
 	$ns_len = strlen( __NAMESPACE__ );

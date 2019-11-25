@@ -2,8 +2,6 @@
 
 namespace Konzilo\GA_Engagement_Metrics;
 
-require_once Plugin::plugin_dir( 'classes/class-abstract-settings.php' );
-
 class Settings extends Abstract_Settings {
 
 	/**
